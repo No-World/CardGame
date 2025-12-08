@@ -1,0 +1,57 @@
+# Windows
+Thumbs.db
+Desktop.ini
+*.log
+
+# Mac
+.DS_Store
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.ipch
+*.ap
+*.tlog
+*.idb
+*.pdb
+*.ilk
+*.obj
+*.iobj
+*.ipdb
+Debug.win32/
+Release.win32/
+x64/
+
+# VS Code
+.vscode/
+
+# Android
+proj.android/.gradle/
+proj.android/app/build/
+proj.android/local.properties
+proj.android/capture/
+
+# iOS / Mac
+proj.ios_mac/build/
+*.xcuserstate
+*.xcuserdata
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+build/
+
+# Cocos2d-x
+cocos2d/build/
+cocos2d/cocos/2d/libcocos2d.vcxproj.user
+cocos2d/external/Box2D/proj.win32/libbox2d.vcxproj.user
+cocos2d/cocos/editor-support/spine/proj.win32/libSpine.vcxproj.user
+
+# Temp
+temp/
+tmp/

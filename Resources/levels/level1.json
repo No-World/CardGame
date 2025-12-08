@@ -1,0 +1,76 @@
+
+
+{
+    "//": {
+        "CardFace": {
+            "0": "Ace",
+            "1": "2",
+            "2": "3",
+            "3": "4",
+            "4": "5",
+            "5": "6",
+            "6": "7",
+            "7": "8",
+            "8": "9",
+            "9": "10",
+            "10": "J",
+            "11": "Q",
+            "12": "K"
+        },
+        "CardSuit": {
+            "0": "梅花 (Clubs)",
+            "1": "方块 (Diamonds)",
+            "2": "红桃 (Hearts)",
+            "3": "黑桃 (Spades)"
+        }
+    },
+    "Playfield": [
+        {
+            "CardFace": 4,
+            "CardSuit": 0,
+            "Position": {"x": 250, "y": 1000}
+        },
+        {
+            "CardFace": 3,
+            "CardSuit": 0,
+            "Position": {"x": 300, "y": 800}
+        },
+        {
+            "CardFace": 2,
+            "CardSuit": 1,
+            "Position": {"x": 350, "y": 600}
+        },
+        {
+            "CardFace": 2,
+            "CardSuit": 0,
+            "Position": {"x": 850, "y": 1000}
+        },
+        {
+            "CardFace": 2,
+            "CardSuit": 0,
+            "Position": {"x": 800, "y": 800}
+        },
+        {
+            "CardFace": 1,
+            "CardSuit": 3,
+            "Position": {"x": 750, "y": 600}
+        }
+    ],
+    "Stack": [
+        {
+            "CardFace": 1,
+            "CardSuit": 0,
+            "Position": {"x": 0, "y": 0}
+        },
+        {
+            "CardFace": 0,
+            "CardSuit": 2,
+            "Position": {"x": 0, "y": 0}
+        },
+        {
+            "CardFace": 1,
+            "CardSuit": 0,
+            "Position": {"x": 0, "y": 0}
+        }
+    ]
+}
