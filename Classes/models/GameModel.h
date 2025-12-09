@@ -29,6 +29,7 @@ public:
     CardModel *drawFromReserve();     // Move from Reserve to Stack
 
     CardModel *getTopStackCard();
+    CardModel *getTopReserveCard();
 
     // For Undo
     void restoreCardToPlayfield(int cardId, const cocos2d::Vec2 &pos);

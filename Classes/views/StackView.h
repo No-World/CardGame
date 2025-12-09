@@ -13,11 +13,15 @@ public:
     void setTopCard(CardView *cardView);
     CardView *getTopCard() const { return _topCard; }
 
+    void setReserveTopCard(CardView *cardView);
+    CardView *getReserveTopCard() const { return _reserveTopCard; }
+
     void setReserveCallback(const std::function<void()> &callback);
     void setReserveVisible(bool visible);
 
 private:
     CardView *_topCard;
+    CardView *_reserveTopCard;
     cocos2d::Sprite *_reservePile;
     std::function<void()> _reserveCallback;
 };

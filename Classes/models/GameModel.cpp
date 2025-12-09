@@ -79,6 +79,13 @@ CardModel *GameModel::getTopStackCard()
     return _stackCards.back();
 }
 
+CardModel *GameModel::getTopReserveCard()
+{
+    if (_reserveCards.empty())
+        return nullptr;
+    return _reserveCards.back();
+}
+
 void GameModel::restoreCardToPlayfield(int cardId, const cocos2d::Vec2 &pos)
 {
     if (_stackCards.empty())

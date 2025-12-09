@@ -80,6 +80,26 @@ void GameController::startGame(int levelId)
         delete _gameModel;
     _gameModel = GameModelFromLevelGenerator::generateGameModel(config);
 
+    // Reset all playfield cards to Face Down initially
+    // This ensures that only the top-most cards are revealed by updateFaceUpState
+    for (auto card : _gameModel->getPlayfieldCards())
+    {
+        card->setFaceUp(false);
+    }
+
+    // Ensure top stack card is Face Up
+    CardModel *topStack = _gameModel->getTopStackCard();
+    if (topStack)
+    {
+        topStack->setFaceUp(true);
+    }
+
+    // Ensure all reserve cards are Face Down initially
+    for (auto card : _gameModel->getReserveCards())
+    {
+        card->setFaceUp(false);
+    }
+
     // Init UndoManager
     _undoManager->init(_gameModel);
 
@@ -128,6 +148,23 @@ void GameController::updateView()
     else
     {
         stackView->setTopCard(nullptr);
+    }
+
+    // Update Reserve Pile
+    // Check if top reserve card is face up
+    CardModel *topReserve = _gameModel->getTopReserveCard();
+    if (topReserve && topReserve->isFaceUp())
+    {
+        CardView *currentReserveView = stackView->getReserveTopCard();
+        if (!currentReserveView || currentReserveView->getModel()->getId() != topReserve->getId())
+        {
+            CardView *cv = CardView::create(topReserve);
+            stackView->setReserveTopCard(cv);
+        }
+    }
+    else
+    {
+        stackView->setReserveTopCard(nullptr);
     }
 
     // Update Reserve Pile Visibility
@@ -191,11 +228,19 @@ void GameController::onCardClicked(int cardId)
     if (!card->isFaceUp())
         return;
 
+    // Check if covered by any other playfield card (even if face up)
+    // Card size based on actual resource size (182x282)
+    cocos2d::Size cardSize(182 * GameConstants::CARD_SCALE, 282 * GameConstants::CARD_SCALE);
+    cocos2d::Size hitBoxSize = cardSize * 0.5f;
+
     bool isPlayfield = false;
-    for (auto c : _gameModel->getPlayfieldCards())
-    {
-        if (c->getId() == cardId)
-        {
+    const auto &cards = _gameModel->getPlayfieldCards();
+    
+    // Find index of current card
+    int cardIndex = -1;
+    for (size_t i = 0; i < cards.size(); ++i) {
+        if (cards[i]->getId() == cardId) {
+            cardIndex = i;
             isPlayfield = true;
             break;
         }
@@ -203,6 +248,24 @@ void GameController::onCardClicked(int cardId)
 
     if (!isPlayfield)
         return;
+
+    // Check coverage
+    cocos2d::Rect currentRect(card->getPosition().x - hitBoxSize.width / 2,
+                              card->getPosition().y - hitBoxSize.height / 2,
+                              hitBoxSize.width, hitBoxSize.height);
+
+    for (size_t j = cardIndex + 1; j < cards.size(); ++j)
+    {
+        CardModel *other = cards[j];
+        cocos2d::Rect otherRect(other->getPosition().x - hitBoxSize.width / 2,
+                                other->getPosition().y - hitBoxSize.height / 2,
+                                hitBoxSize.width, hitBoxSize.height);
+        if (currentRect.intersectsRect(otherRect))
+        {
+            // Covered, cannot click
+            return;
+        }
+    }
 
     CardModel *topStack = _gameModel->getTopStackCard();
     if (!topStack)
@@ -382,6 +445,11 @@ void GameController::updateFaceUpState()
                 break;
             }
         }
-        current->setFaceUp(!covered);
+        
+        // Only flip face up if not covered.
+        // If covered, we keep the current state (so if it was already face up, it stays face up).
+        if (!covered) {
+            current->setFaceUp(true);
+        }
     }
 }
