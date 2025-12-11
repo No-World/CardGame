@@ -16,6 +16,14 @@ void UndoManager::init(GameModel *gameModel)
     _gameModel = gameModel;
 }
 
+void UndoManager::reset()
+{
+    if (_undoModel)
+    {
+        _undoModel->clear();
+    }
+}
+
 void UndoManager::recordPlayfieldMove(int cardId, const cocos2d::Vec2 &originalPos)
 {
     UndoAction action;

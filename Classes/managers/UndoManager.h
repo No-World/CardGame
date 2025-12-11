@@ -11,6 +11,7 @@ public:
     ~UndoManager();
 
     void init(GameModel *gameModel);
+    void reset();
 
     void recordPlayfieldMove(int cardId, const cocos2d::Vec2 &originalPos);
     void recordReserveMove(int cardId);

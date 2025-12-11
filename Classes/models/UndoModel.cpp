@@ -10,6 +10,11 @@ bool UndoModel::hasActions() const
     return !_actions.empty();
 }
 
+void UndoModel::clear()
+{
+    _actions.clear();
+}
+
 UndoAction UndoModel::popAction()
 {
     if (_actions.empty())

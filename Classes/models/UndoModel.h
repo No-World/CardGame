@@ -27,6 +27,7 @@ class UndoModel
 public:
     void addAction(const UndoAction &action);
     bool hasActions() const;
+    void clear();
     UndoAction popAction();
     UndoAction peekAction() const;
 

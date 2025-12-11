@@ -102,6 +102,7 @@ void GameController::startGame(int levelId)
 
     // Init UndoManager
     _undoManager->init(_gameModel);
+    _undoManager->reset();
 
     updateFaceUpState();
     updateView();
