@@ -11,8 +11,11 @@ public:
     CREATE_FUNC(PlayFieldView);
     bool init();
 
+    // 添加卡牌视图
     void addCard(CardView *cardView);
+    // 移除卡牌视图
     void removeCard(int cardId);
+    // 获取卡牌视图
     CardView *getCardView(int cardId);
 
 private:

@@ -25,10 +25,15 @@ struct UndoAction
 class UndoModel
 {
 public:
+    // 添加撤回操作
     void addAction(const UndoAction &action);
+    // 是否有撤回操作
     bool hasActions() const;
+    // 清空撤回操作
     void clear();
+    // 弹出并返回最后一个撤回操作
     UndoAction popAction();
+    // 查看最后一个撤回操作（不弹出）
     UndoAction peekAction() const;
 
 private:

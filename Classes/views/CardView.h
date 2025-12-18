@@ -10,9 +10,12 @@ public:
     static CardView *create(CardModel *model);
     bool init(CardModel *model);
 
+    // 更新卡牌视图显示
     void updateView();
+    // 获取卡牌模型
     CardModel *getModel() const { return _model; }
 
+    // 设置点击回调
     void setClickCallback(const std::function<void(int)> &callback);
 
 private:

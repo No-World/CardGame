@@ -7,6 +7,7 @@
 class GameModelFromLevelGenerator
 {
 public:
+    // 根据关卡配置生成游戏模型
     static GameModel *generateGameModel(const LevelConfig &config);
 };
 

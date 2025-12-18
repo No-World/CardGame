@@ -7,10 +7,13 @@
 class GameScene : public cocos2d::Scene
 {
 public:
+    // 创建场景
     static cocos2d::Scene *createScene();
+    // 初始化场景
     virtual bool init();
     CREATE_FUNC(GameScene);
 
+    // 退出场景回调
     virtual void onExit();
 
 private:

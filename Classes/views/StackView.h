@@ -10,13 +10,19 @@ public:
     CREATE_FUNC(StackView);
     bool init();
 
+    // 设置顶部卡牌
     void setTopCard(CardView *cardView);
+    // 获取顶部卡牌
     CardView *getTopCard() const { return _topCard; }
 
+    // 设置备用牌堆顶部卡牌
     void setReserveTopCard(CardView *cardView);
+    // 获取备用牌堆顶部卡牌
     CardView *getReserveTopCard() const { return _reserveTopCard; }
 
+    // 设置备用牌堆点击回调
     void setReserveCallback(const std::function<void()> &callback);
+    // 设置备用牌堆可见性
     void setReserveVisible(bool visible);
 
 private:

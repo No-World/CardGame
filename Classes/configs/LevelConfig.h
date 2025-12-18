@@ -22,6 +22,7 @@ struct LevelConfig
 class LevelConfigLoader
 {
 public:
+    // 加载关卡配置
     static LevelConfig loadLevelConfig(const std::string &jsonContent);
 };
 

@@ -8,8 +8,11 @@
 class LangConfig
 {
 public:
+    // 获取单例实例
     static LangConfig *getInstance();
+    // 加载语言配置
     void loadLanguage(const std::string &langCode);
+    // 获取本地化字符串
     std::string getString(const std::string &key);
 
 private:
